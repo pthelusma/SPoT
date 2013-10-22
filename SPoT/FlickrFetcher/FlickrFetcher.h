@@ -30,6 +30,8 @@ typedef enum {
 
 + (NSArray *)stanfordPhotos;
 
++ (NSArray *) topPlaces;
+
 + (NSURL *)urlForPhoto:(NSDictionary *)photo format:(FlickrPhotoFormat)format;
 
 + (NSArray *)latestGeoreferencedPhotos;
