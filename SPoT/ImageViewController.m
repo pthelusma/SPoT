@@ -78,6 +78,15 @@
     [self resetImage];
 }
 
+- (void) setImageURL:(NSURL *)imageURL
+{
+    _imageURL = imageURL;
+    
+    NSLog(@"%@", [imageURL path]);
+    
+    [self resetImage];
+}
+
 - (BOOL) isIpad
 {
     return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);

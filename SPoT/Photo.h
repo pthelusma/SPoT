@@ -1,5 +1,5 @@
 //
-//  Tag.h
+//  Photo.h
 //  SPoT
 //
 //  Created by Pierre Thelusma on 10/31/13.
@@ -11,10 +11,14 @@
 
 @class PhotoTag;
 
-@interface Tag : NSManagedObject
+@interface Photo : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * tag_id;
+@property (nonatomic, retain) NSString * photo_id;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * subtitle;
+@property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NSString * thumbnail_url;
+@property (nonatomic, retain) NSData * thumbnail_image_data;
 @property (nonatomic, retain) PhotoTag *toPhotoTag;
 
 @end

@@ -29,21 +29,21 @@
     {
         for(NSString *tag in [photo[FLICKR_TAGS] componentsSeparatedByString:@" "])
         {
-            if(![[self tagExceptions] containsObject:tag])
-            {
-                Tag *foundTag = nil;
-                
-                if([self findTag:tag])
-                {
-                    [self findTag:tag].count += 1;
-                } else
-                {
-                    [self.tags addObject:[[Tag alloc] initWithName:tag]];
-                }
-                
-                foundTag = [self findTag:tag];
-                [foundTag.photos addObject:photo];
-            }
+//            if(![[self tagExceptions] containsObject:tag])
+//            {
+//                Tag *foundTag = nil;
+//                
+//                if([self findTag:tag])
+//                {
+//                    [self findTag:tag].count += 1;
+//                } else
+//                {
+//                    [self.tags addObject:[[Tag alloc] initWithName:tag]];
+//                }
+//                
+//                foundTag = [self findTag:tag];
+//                [foundTag.photos addObject:photo];
+//            }
         }
     }
     
@@ -66,16 +66,16 @@
                 if([segue.destinationViewController respondsToSelector:@selector(setPhotos:)])
                 {
                     
-                    Tag *tag = [self findTag:[self tagForRow:indexPath.row]];
-                    
-                    NSArray *photos = [tag photos];
-                    
-                    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:FLICKR_PHOTO_TITLE  ascending:YES];
-                    
-                    photos = [photos sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor, nil]];
-                    
-                    [segue.destinationViewController performSelector:@selector(setPhotos:) withObject:photos];
-                    [segue.destinationViewController setTitle:[tag.name capitalizedString]];
+//                    Tag *tag = [self findTag:[self tagForRow:indexPath.row]];
+//                    
+//                    NSArray *photos = [tag photos];
+//                    
+//                    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:FLICKR_PHOTO_TITLE  ascending:YES];
+//                    
+//                    photos = [photos sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor, nil]];
+//                    
+//                    [segue.destinationViewController performSelector:@selector(setPhotos:) withObject:photos];
+//                    [segue.destinationViewController setTitle:[tag.name capitalizedString]];
                 }
             }
         }
@@ -89,10 +89,10 @@
     
     for(Tag *tag in self.tags)
     {
-        if([[tag name] isEqualToString: tagName])
-        {
-            foundTag = tag;
-        }
+//        if([[tag name] isEqualToString: tagName])
+//        {
+//            foundTag = tag;
+//        }
     }
     
     return foundTag;

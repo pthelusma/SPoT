@@ -1,5 +1,5 @@
 //
-//  Tag.h
+//  PhotoTag.h
 //  SPoT
 //
 //  Created by Pierre Thelusma on 10/31/13.
@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class PhotoTag;
+@class Photo, Tag;
 
-@interface Tag : NSManagedObject
+@interface PhotoTag : NSManagedObject
 
+@property (nonatomic, retain) NSString * photo_id;
 @property (nonatomic, retain) NSNumber * tag_id;
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) PhotoTag *toPhotoTag;
+@property (nonatomic, retain) Tag *toTag;
+@property (nonatomic, retain) Photo *toPhoto;
 
 @end
