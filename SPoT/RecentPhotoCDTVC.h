@@ -10,4 +10,6 @@
 
 @interface RecentPhotoCDTVC : PhotoCDTVC
 
+@property (nonatomic, strong) NSManagedObjectContext *context;
+
 @end

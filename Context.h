@@ -10,8 +10,6 @@
 
 @interface Context : NSObject
 
-@property (nonatomic, strong) NSManagedObjectContext *context;
-
-- (void) createContext:(void(^)(void))callback refresh:(void(^)(void))refresh;
++ (void) createContext:(void(^)(NSManagedObjectContext *))callback refresh:(void(^)(void))refresh;
 
 @end

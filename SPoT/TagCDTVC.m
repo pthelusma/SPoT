@@ -41,9 +41,8 @@
     [super viewWillAppear:animated];
     if(!self.context)
     {
-        Context *context = [[Context alloc] init];
-        [context createContext:^{
-            self.context = [context context];
+        [Context createContext:^(NSManagedObjectContext *stuff){
+            self.context = stuff;
         } refresh:^{
             [self refresh];
         }];

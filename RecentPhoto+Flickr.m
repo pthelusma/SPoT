@@ -56,13 +56,6 @@
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
     
-    for(RecentPhoto *r in matches)
-    {
-        NSLog(@"%@", r.photo_id);
-    }
-    
-    NSLog(@"%d", matches.count);
-    
     RecentPhoto *recentPhotoToAdd = nil;
     
     if(!matches || [matches count] > 1)

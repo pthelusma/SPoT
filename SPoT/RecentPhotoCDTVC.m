@@ -45,18 +45,17 @@
     [super viewWillAppear:animated];
     if(!self.context)
     {
-        Context *context = [[Context alloc] init];
-        [context createContext:^{
-            self.context = [context context];
-        }  refresh:nil];
+        [Context createContext:^(NSManagedObjectContext *stuff){
+            self.context = stuff;
+        } refresh:nil];
     }
 }
 
 - (void)setContext:(NSManagedObjectContext *)context
 {
-    
     if(context)
     {
+        
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"RecentPhoto"];
         request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date_added" ascending:NO selector:@selector(localizedCaseInsensitiveCompare:)]];
         
@@ -83,7 +82,14 @@
                 {
                     RecentPhoto *recentPhoto = [self.fetchedResultsController objectAtIndexPath:indexPath];
                     
-                    [RecentPhoto addRecentPhoto:recentPhoto context:self.context];
+                    if(!self.context)
+                    {
+                        [Context createContext:^(NSManagedObjectContext *stuff){
+                            self.context = stuff;
+                        } refresh:nil];
+                    }
+                    
+                    [RecentPhoto addRecentPhoto:recentPhoto context:[self context]];
                     
                     NSURL *url = [[NSURL alloc] initWithString:recentPhoto.url];
                     

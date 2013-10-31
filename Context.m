@@ -10,7 +10,9 @@
 
 @implementation Context
 
-- (void) createContext:(void(^)(void))callback refresh:(void(^)(void))refresh
+static NSManagedObjectContext *context = nil;
+
++ (void) createContext:(void(^)(NSManagedObjectContext *))callback refresh:(void(^)(void))refresh
 {
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
@@ -24,8 +26,8 @@
           completionHandler:^(BOOL success) {
               if(success)
               {
-                  self.context = document.managedObjectContext;
-                  callback();
+                  context = document.managedObjectContext;
+                  callback(context);
                   refresh();
               }
           }];
@@ -34,14 +36,14 @@
         [document openWithCompletionHandler:^(BOOL success) {
             if(success)
             {
-                self.context = document.managedObjectContext;
-                callback();
+                context = document.managedObjectContext;
+                callback(context);
             }
         }];
     } else
     {
-        self.context = document.managedObjectContext;
-        callback();
+        context = document.managedObjectContext;
+        callback(context);
     }
 }
 
